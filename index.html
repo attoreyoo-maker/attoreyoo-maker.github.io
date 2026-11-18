@@ -91,8 +91,8 @@ nav ul a:hover{color:var(--gold)}
 .hero h1{font-family:'Noto Serif KR',serif;font-weight:900;font-size:clamp(2.8rem,9vw,5.4rem);line-height:1.15;letter-spacing:.06em}
 .hero h1 small{display:block;font-size:.34em;font-weight:500;letter-spacing:.12em;margin-top:18px;color:#f1e3cf}
 .hero .slogan{margin-top:30px;font-size:clamp(1.1rem,3vw,1.5rem);color:var(--gold);font-family:'Noto Serif KR',serif}
-.btns{margin-top:38px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn{display:inline-block;padding:13px 28px;border-radius:99px;text-decoration:none;font-weight:500;transition:.2s}
+.btns{margin:38px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:340px}
+.btn{display:block;text-align:center;padding:13px 28px;border-radius:99px;text-decoration:none;font-weight:500;transition:.2s}
 .btn.p{background:var(--gold);color:var(--bean-d)}
 .btn.p:hover{background:#dcb064}
 .btn.o{border:1px solid #fff;color:#fff}
@@ -174,9 +174,11 @@ footer b{display:block;font-family:'Noto Serif KR',serif;color:#fff;font-size:1.
   .story .grid,.info .grid{grid-template-columns:1fr;gap:34px}
   .menu .cards{grid-template-columns:1fr;max-width:460px;margin:0 auto}
   .g{grid-template-columns:1fr 1fr}
-  .fab{display:block;position:fixed;right:16px;bottom:16px;z-index:60;background:var(--red);color:#fff;text-decoration:none;font-weight:700;padding:14px 22px;border-radius:99px;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+  .fab{display:block;position:fixed;right:16px;bottom:16px;z-index:60;background:var(--red);color:#fff;text-decoration:none;font-weight:700;font-size:.9rem;padding:6px 16px;border-radius:99px;box-shadow:0 6px 18px rgba(0,0,0,.35)}
   .row{flex-direction:column;gap:2px}
   .table{padding:6px 20px}
+  .btns{max-width:210px;gap:16px}
+  .btn{padding:6px 10px;font-size:.9rem}
 }
 .fade{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s}
 .fade.on{opacity:1;transform:none}
@@ -200,11 +202,13 @@ footer b{display:block;font-family:'Noto Serif KR',serif;color:#fff;font-size:1.
 <header class="hero" id="top">
   <div class="in">
     <div class="badge">SINCE 1992 · 김제</div>
-    <h1>월촌팥죽<small>33년 전통, 김제에서 검증된 팥죽 한 그릇</small></h1>
+    <h1>월촌팥죽<small>33년 전통, 검증된 팥죽 한 그릇</small></h1>
     <p class="slogan">"맛있Go, 진하Go, 넉넉하Go!"</p>
     <div class="btns">
-      <a class="btn p" href="#menu">메뉴 보기</a>
-      <a class="btn o" href="#info">오시는 길</a>
+      <a class="btn p" href="#story">이야기</a>
+      <a class="btn p" href="#menu">메뉴</a>
+      <a class="btn p" href="#gallery">매장</a>
+      <a class="btn p" href="#info">오시는 길</a>
     </div>
   </div>
 </header>
@@ -226,7 +230,7 @@ footer b{display:block;font-family:'Noto Serif KR',serif;color:#fff;font-size:1.
           <div><b>2025.11~</b><span>3대 주인장</span></div>
         </div>
         <p>33년의 세월이 부끄럽지 않도록, 오늘 주문하신 한 그릇에도 최선을 다하겠습니다. 오래된 단골 손님도, 처음 오시는 분들도 한 그릇 드시면 느끼실 수 있을 겁니다.</p>
-        <p class="quote">전북 김제 팥죽 맛집, 김제전통시장 월촌팥죽</p>
+        <p class="quote">주변 도시에서 찾아 오시는<br>전북 김제 팥죽 맛집, 김제전통시장 월촌팥죽</p>
       </div>
     </div>
   </div>
@@ -322,6 +326,9 @@ footer b{display:block;font-family:'Noto Serif KR',serif;color:#fff;font-size:1.
 <script>
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+// 소개 영상 2 음량을 영상 1과 비슷하게 낮춤 (0~1, 숫자를 바꿔 조절)
+const v2=document.querySelector('video[poster="video/short2.jpg"]');
+if(v2){v2.volume=0.4;v2.addEventListener('play',()=>{if(v2.volume>0.4)v2.volume=0.4},{once:true})}
 </script>
 </body>
 </html>
